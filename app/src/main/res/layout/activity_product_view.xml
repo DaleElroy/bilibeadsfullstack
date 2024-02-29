@@ -31,7 +31,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/necklace"
+        android:hint="Necklace"
         android:layout_marginStart="16dp"
         android:layout_below="@id/priceTextView"
         android:layout_marginTop="8dp"
