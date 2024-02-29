@@ -17,6 +17,15 @@
         android:theme="@style/Theme.BilibeadsDesigns"
         tools:targetApi="31">
         <activity
+            android:name=".Dashboard.CheckOut"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.AddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard.ProductView"
+            android:exported="false" />
+        <activity
             android:name=".ResetPasswordActivity"
             android:exported="false" />
         <activity
