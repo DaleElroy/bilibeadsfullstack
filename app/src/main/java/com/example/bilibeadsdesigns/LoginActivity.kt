@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
 import com.example.bilibeadsdesigns.Dashboard.Dashboard
 import com.example.bilibeadsdesigns.bilibeads.models.RetrofitClient
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordEt: EditText
     private lateinit var loginBt: Button
     private lateinit var username: EditText
+    private lateinit var forgot: TextView
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +35,15 @@ class LoginActivity : AppCompatActivity() {
         usernameEt = findViewById(R.id.login_username)
         passwordEt = findViewById(R.id.login_password)
         loginBt = findViewById(R.id.bt_confirm_login)
+        forgot = findViewById(R.id.forgot_password)
 
         createAccount.setOnClickListener{
             val intent = Intent(this, RegistrationActivity::class.java)
+            startActivity(intent)
+        }
+
+        forgot.setOnClickListener{
+            val intent = Intent(this, ResetPasswordActivity::class.java)
             startActivity(intent)
         }
 

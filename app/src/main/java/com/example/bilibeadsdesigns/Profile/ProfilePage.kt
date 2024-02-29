@@ -1,8 +1,6 @@
 package com.example.bilibeadsdesigns.Profile
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -14,6 +12,11 @@ import com.example.bilibeadsdesigns.Dashboard.Dashboard
 import com.example.bilibeadsdesigns.HelpCenter.HelpCenter
 import com.example.bilibeadsdesigns.LoginActivity
 import com.example.bilibeadsdesigns.R
+import com.example.bilibeadsdesigns.bilibeads.models.RetrofitClient
+import com.example.bilibeadsdesigns.bilibeads.models.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfilePage : AppCompatActivity() {
 
@@ -24,7 +27,6 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var tvEmail: TextView
     private lateinit var tvAddress: TextView
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_profile)
@@ -73,22 +75,26 @@ class ProfilePage : AppCompatActivity() {
     }
 
     private fun loadUserData() {
-        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+        val apiService = RetrofitClient.getService()
 
-        val user = sharedPreferences.getString("name", "")
-        val email = sharedPreferences.getString("email", "")
-        // Add more fields as needed
+        apiService.getUserDetails().enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    val userDetails = response.body()
+                    userDetails?.let {
+                        val user = it.name
+                        val email = it.email
 
-        tvUser.text = "User: $user"
-        tvEmail.text = "Email: $email"
-        // Update other TextViews with user data as needed
-    }
+                        tvUser.text = "User: $user"
+                        tvEmail.text = "Email: $email"
+                    }
+                }
+            }
 
-    @SuppressLint("MissingSuperCall")
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        val intent = Intent(this, Dashboard::class.java)
-        startActivity(intent)
-        finish()
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                // Handle failure
+                Toast.makeText(this@ProfilePage, "Failed to load user details", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

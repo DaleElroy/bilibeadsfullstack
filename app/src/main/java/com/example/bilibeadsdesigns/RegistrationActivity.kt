@@ -3,6 +3,7 @@ package com.example.bilibeadsdesigns
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -20,6 +21,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var et_password: EditText
     private lateinit var et_confirmPassword: EditText
     private lateinit var tv_button_SignIn: AppCompatButton
+    private lateinit var tv_button_Login: TextView
 
     private val apiService = RetrofitClient.getService()
 
@@ -32,11 +34,19 @@ class RegistrationActivity : AppCompatActivity() {
         et_password = findViewById(R.id.register_password)
         et_confirmPassword = findViewById(R.id.register_confirm_password)
         tv_button_SignIn = findViewById(R.id.bt_registration)
+        tv_button_Login = findViewById(R.id.tv_button_SignIn)
+
+        tv_button_Login.setOnClickListener{
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         tv_button_SignIn.setOnClickListener {
             registerUser()
         }
     }
+
+
 
     private fun registerUser() {
         val name = et_name.text.toString().trim()

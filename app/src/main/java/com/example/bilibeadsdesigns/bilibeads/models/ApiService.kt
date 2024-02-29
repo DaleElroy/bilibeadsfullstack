@@ -14,4 +14,10 @@ interface ApiService {
     @POST("login")
     fun login(@Body credentials: User): Call<User>
 
+    @GET("user")
+    fun getUserDetails(): Call<User>
+
+    @POST("reset-password")
+    fun resetPassword(@Body resetPasswordRequest: ResetPasswordRequest): Call<ResetPasswordResponse>
+
 }
