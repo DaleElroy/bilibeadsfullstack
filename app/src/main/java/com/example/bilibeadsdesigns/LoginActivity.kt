@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(email: String, password: String) {
-        val apiService = RetrofitClient.getService()
+        val apiService = RetrofitClient.getService(this)
 
         val user = User(name = "", email = email, password = password)
 

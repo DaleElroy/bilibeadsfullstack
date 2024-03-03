@@ -23,7 +23,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var tv_button_SignIn: AppCompatButton
     private lateinit var tv_button_Login: TextView
 
-    private val apiService = RetrofitClient.getService()
+    private val apiService = RetrofitClient.getService(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
