@@ -39,7 +39,7 @@ class ResetPasswordActivity : AppCompatActivity() {
     }
 
     private fun resetPassword(email: String) {
-        val apiService = RetrofitClient.getService()
+        val apiService = RetrofitClient.getService(this)
 
         val resetPasswordRequest = ResetPasswordRequest(email)
 

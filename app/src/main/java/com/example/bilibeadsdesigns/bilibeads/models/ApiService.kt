@@ -21,4 +21,7 @@ interface ApiService {
     @POST("reset-password")
     fun resetPassword(@Body resetPasswordRequest: ResetPasswordRequest): Call<ResetPasswordResponse>
 
+    @GET("product")
+    fun getProduct(): Call<List<ProductItem>>
+
 }
