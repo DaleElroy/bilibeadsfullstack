@@ -16,7 +16,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var createAccount: RelativeLayout
@@ -47,7 +46,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         loginBt.setOnClickListener {
             val username = usernameEt.text.toString().trim()
             val password = passwordEt.text.toString().trim()
@@ -66,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
         call.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
+                    val loggedInUser = response.body()
+                    saveUserData(loggedInUser)
+
                     Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@LoginActivity, Dashboard::class.java)
                     startActivity(intent)
@@ -79,5 +80,17 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Network error. Please try again.", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun saveUserData(user: User?) {
+        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        editor.putString("id", user?.id)
+        editor.putString("name", user?.name)
+        editor.putString("email", user?.email)
+        // Add more fields as needed
+
+        editor.apply()
     }
 }

@@ -1,7 +1,9 @@
 package com.example.bilibeadsdesigns.Profile
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,6 +29,11 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var tvEmail: TextView
     private lateinit var tvAddress: TextView
 
+//    private lateinit var tvYourName: TextView
+//    private lateinit var tvYourEmail: TextView
+//    private lateinit var tvYourNumber: TextView
+//    private lateinit var tvYourGender: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_profile)
@@ -37,6 +44,11 @@ class ProfilePage : AppCompatActivity() {
         tvUser = findViewById(R.id.tvUser)
         tvEmail = findViewById(R.id.tvEmail)
         tvAddress = findViewById(R.id.tvAddress)
+
+//        tvYourName = findViewById(R.id.tvUser)
+//        tvYourEmail = findViewById(R.id.tvEmail)
+//        tvYourNumber = findViewById(R.id.tvYourNumber)
+//        tvYourGender = findViewById(R.id.tvYourGender)
 
         loadUserData()
 
@@ -74,27 +86,30 @@ class ProfilePage : AppCompatActivity() {
         }
     }
 
+    private fun getUserData(): User? {
+        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+
+        val id = sharedPreferences.getString("id", null)
+        val name = sharedPreferences.getString("name", null)
+        val email = sharedPreferences.getString("email", null)
+        // Get more fields as needed
+
+        return if (id != null && name != null && email != null) {
+            User(id = id, name = name, email = email, password = "")
+        } else {
+            null
+        }
+    }
+
     private fun loadUserData() {
-        val apiService = RetrofitClient.getService()
+        val userData = getUserData()
 
-        apiService.getUserDetails().enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    val userDetails = response.body()
-                    userDetails?.let {
-                        val user = it.name
-                        val email = it.email
-
-                        tvUser.text = "User: $user"
-                        tvEmail.text = "Email: $email"
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                // Handle failure
-                Toast.makeText(this@ProfilePage, "Failed to load user details", Toast.LENGTH_SHORT).show()
-            }
-        })
+        userData?.let { user ->
+            val fullName = "${user.name} ${user.email}"
+            Log.d("UserData", "User ID: ${user.id}, Name: ${user.name}, Email: ${user.email}")
+            tvUser.text = fullName
+            tvEmail.text = user.email
+            // Set tvYourNumber and tvYourGender as needed
+        }
     }
 }
