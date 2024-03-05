@@ -1,17 +1,17 @@
 package com.example.bilibeadsdesigns.Customize
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.bilibeadsdesigns.R
 import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bilibeadsdesigns.AddToCart.CartActivity
 import com.example.bilibeadsdesigns.Dashboard.Dashboard
 import com.example.bilibeadsdesigns.Profile.ProfilePage
+import com.example.bilibeadsdesigns.R
 
 class Customize : AppCompatActivity() {
     private var currentImageViewIndex = 0

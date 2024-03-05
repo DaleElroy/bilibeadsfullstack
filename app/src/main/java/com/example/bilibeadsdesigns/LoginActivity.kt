@@ -70,10 +70,13 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@LoginActivity, Dashboard::class.java)
                     startActivity(intent)
-                    finish()
+
+                    // Remove the following line
+                    // finish()
                 } else {
                     Toast.makeText(applicationContext, "Login failed. Please try again.", Toast.LENGTH_SHORT).show()
                 }
+
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {

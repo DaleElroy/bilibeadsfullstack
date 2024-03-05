@@ -1,4 +1,4 @@
-package com.example.bilibeadsdesigns.Dashboard.adapter
+package com.example.bilibeadsdesigns.Dashboard
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bilibeadsdesigns.Dashboard.Dashboard
 import com.example.bilibeadsdesigns.R
 import com.example.bilibeadsdesigns.bilibeads.models.ProductItem
 
@@ -17,7 +16,8 @@ class DashboardAdapter(private val getActivity: Dashboard, private val productLi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.activity_dashboard_product_display_layout, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.activity_dashboard_product_display_layout, parent, false)
         return MyViewHolder(view)
     }
 

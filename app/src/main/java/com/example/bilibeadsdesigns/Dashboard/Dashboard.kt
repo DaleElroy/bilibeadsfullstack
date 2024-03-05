@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bilibeadsdesigns.AddToCart.CartActivity
 import com.example.bilibeadsdesigns.Customize.Customize
-import com.example.bilibeadsdesigns.Dashboard.adapter.DashboardAdapter
 import com.example.bilibeadsdesigns.Profile.ProfilePage
 import com.example.bilibeadsdesigns.R
 import com.example.bilibeadsdesigns.bilibeads.models.ProductItem
@@ -48,7 +47,7 @@ class Dashboard : AppCompatActivity() {
             finish()
         }
         cartButton.setOnClickListener {
-            val intent = Intent (this, CartActivity::class.java)
+            val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }
 
