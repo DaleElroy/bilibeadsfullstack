@@ -1,9 +1,9 @@
 package com.example.bilibeadsdesigns.SplashScreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import com.example.bilibeadsdesigns.LoginActivity
 import com.example.bilibeadsdesigns.R
 

@@ -1,6 +1,5 @@
 package com.example.bilibeadsdesigns.bilibeads.models
 
-import com.example.bilibeadsdesigns.bilibeads.models.LoginUser
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,6 +21,6 @@ interface ApiService {
     fun resetPassword(@Body resetPasswordRequest: ResetPasswordRequest): Call<ResetPasswordResponse>
 
     @GET("product")
-    fun getProduct(): Call<List<ProductItem>>
+    fun getProductList(): Call<List<ProductItem>>
 
 }

@@ -1,7 +1,5 @@
-package com.example.bilibeadsdesigns.Product
+package com.example.bilibeadsdesigns.Dashboard.adapter
 
-
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +7,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bilibeadsdesigns.Dashboard.Dashboard
-import com.example.bilibeadsdesigns.Dashboard.DataClassDashboard
 import com.example.bilibeadsdesigns.R
+import com.example.bilibeadsdesigns.bilibeads.models.ProductItem
 
-class DashboardAdapter (private val getActivity: Dashboard, private val productList: List<DataClassDashboard>):
+class DashboardAdapter(private val getActivity: Dashboard, private val productList: MutableList<ProductItem>) :
     RecyclerView.Adapter<DashboardAdapter.MyViewHolder>() {
 
-
-    var onItemClick : ((DataClassDashboard) -> Unit)? = null
+    var onItemClick: ((ProductItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_dashboard_product_display_layout, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.activity_dashboard_product_display_layout, parent, false)
         return MyViewHolder(view)
     }
 
@@ -29,26 +27,17 @@ class DashboardAdapter (private val getActivity: Dashboard, private val productL
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val product = productList[position]
-        holder.productTitle.text = productList[position].title
-        //holder.productPrice.text = productList[position].price
-        holder.productPrice.text = productList[position].price.toString()
-        holder.productImage.setImageResource(productList[position].image)
-        holder.productImage.setImageResource(product.image)
-        //holder  para a currency
+        holder.productTitle.text = product.name
+        holder.productPrice.text = product.price
 
-
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onItemClick?.invoke(product)
-            Log.d("ItemClicked", "Item clicked:$ {item.title}")
         }
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val productTitle : TextView = itemView.findViewById(R.id.tv_title)
-        val productImage : ImageView = itemView.findViewById(R.id.iv_beads)
+        val productTitle: TextView = itemView.findViewById(R.id.tv_title)
+        val productImage: ImageView = itemView.findViewById(R.id.iv_beads)
         val productPrice: TextView = itemView.findViewById(R.id.tv_price)
-
-
     }
-
 }

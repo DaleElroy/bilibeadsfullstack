@@ -19,7 +19,7 @@
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:src="@drawable/design12" />
+            android:src="@drawable/design11" />
         <androidx.appcompat.widget.AppCompatButton
             android:gravity="center"
             android:id="@+id/addtocartButton"
