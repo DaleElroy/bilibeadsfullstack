@@ -1,5 +1,7 @@
-package com.example.bilibeadsdesigns.Dashboard
+package com.example.bilibeadsdesigns.Dashboard.adapter
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,35 +11,50 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bilibeadsdesigns.R
 import com.example.bilibeadsdesigns.bilibeads.models.ProductItem
 
-class DashboardAdapter(private val getActivity: Dashboard, private val productList: MutableList<ProductItem>) :
-    RecyclerView.Adapter<DashboardAdapter.MyViewHolder>() {
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
-    var onItemClick: ((ProductItem) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.activity_dashboard_product_display_layout, parent, false)
-        return MyViewHolder(view)
+class DashboardAdapter(private val context: Context, initialProductList: MutableList<ProductItem>) : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
+
+    private var productList = mutableListOf<ProductItem>()
+
+    init {
+        productList.addAll(initialProductList)
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val productName: TextView = itemView.findViewById(R.id.tv_title)
+        val productImage: ImageView = itemView.findViewById(R.id.iv_beads)
+        val productPrice: TextView = itemView.findViewById(R.id.tv_price)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.activity_dashboard_product_display_layout, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return productList.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = productList[position]
-        holder.productTitle.text = product.name
+
+        // Load image using Glide
+//        Glide.with(context).load(product.photo).into(holder.productImage)
+        holder.productName.text = product.title
         holder.productPrice.text = product.price
 
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(product)
+            // Handle item click if needed
         }
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val productTitle: TextView = itemView.findViewById(R.id.tv_title)
-        val productImage: ImageView = itemView.findViewById(R.id.iv_beads)
-        val productPrice: TextView = itemView.findViewById(R.id.tv_price)
+    @SuppressLint("NotifyDataSetChanged")
+    fun setProductList(products: List<ProductItem>) {
+        productList.clear()
+        productList.addAll(products)
+        notifyDataSetChanged()
     }
 }

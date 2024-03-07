@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bilibeadsdesigns.AddToCart.CartActivity
 import com.example.bilibeadsdesigns.Customize.Customize
+import com.example.bilibeadsdesigns.Dashboard.adapter.DashboardAdapter
 import com.example.bilibeadsdesigns.Profile.ProfilePage
 import com.example.bilibeadsdesigns.R
 import com.example.bilibeadsdesigns.bilibeads.models.ProductItem
@@ -60,12 +61,14 @@ class Dashboard : AppCompatActivity() {
         val call = apiService.getProductList()
 
         call.enqueue(object : Callback<List<ProductItem>> {
-            override fun onResponse(call: Call<List<ProductItem>>, response: Response<List<ProductItem>>) {
+            override fun onResponse(
+                call: Call<List<ProductItem>>,
+                response: Response<List<ProductItem>>
+            ) {
                 if (response.isSuccessful) {
                     val products = response.body()
                     products?.let {
-                        productList.addAll(it)
-                        productRecyclerviewAdapter.notifyDataSetChanged()
+                        productRecyclerviewAdapter.setProductList(it)
                     }
                 } else {
                     // Handle error response
