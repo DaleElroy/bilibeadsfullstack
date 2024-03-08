@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.bilibeadsdesigns.R
 import com.example.bilibeadsdesigns.bilibeads.models.ProductItem
-
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 
 class DashboardAdapter(private val context: Context, initialProductList: MutableList<ProductItem>) : RecyclerView.Adapter<DashboardAdapter.ViewHolder>() {
@@ -42,7 +40,16 @@ class DashboardAdapter(private val context: Context, initialProductList: Mutable
         val product = productList[position]
 
         // Load image using Glide
-//        Glide.with(context).load(product.photo).into(holder.productImage)
+        Glide.with(context)
+            .load(product.gallery)
+            .placeholder(R.drawable.design1) // Placeholder while loading
+            .error(R.drawable.picture1) // Placeholder for error case
+            .into(holder.productImage)
+
+//        val imagename = product.gallery
+//        val imagepath = "https://bilibead-bilibead-com.preview-domain.com/api/$imagename"
+//        Glide.with(this.context).load(imagepath).into(holder.productImage)
+
         holder.productName.text = product.title
         holder.productPrice.text = product.price
 
