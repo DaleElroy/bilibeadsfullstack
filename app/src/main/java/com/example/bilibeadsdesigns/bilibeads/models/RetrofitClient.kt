@@ -39,7 +39,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://bilibead-bilibead-com.preview-domain.com/api/"
+    private const val BASE_URL = "https://bilibeadss-bilibeadss-com.preview-domain.com/api/"
     private const val PREF_NAME = "mySharedPreferences"
     private const val TOKEN_KEY = "token"
 

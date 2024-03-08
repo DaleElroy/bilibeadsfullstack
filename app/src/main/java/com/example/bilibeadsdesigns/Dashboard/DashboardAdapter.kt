@@ -40,15 +40,15 @@ class DashboardAdapter(private val context: Context, initialProductList: Mutable
         val product = productList[position]
 
         // Load image using Glide
-        Glide.with(context)
-            .load(product.gallery)
-            .placeholder(R.drawable.design1) // Placeholder while loading
-            .error(R.drawable.picture1) // Placeholder for error case
-            .into(holder.productImage)
+//        Glide.with(context)
+//            .load(product.gallery)
+//            .placeholder(R.drawable.design1) // Placeholder while loading
+//            .error(R.drawable.picture1) // Placeholder for error case
+//            .into(holder.productImage)
 
-//        val imagename = product.gallery
-//        val imagepath = "https://bilibead-bilibead-com.preview-domain.com/api/$imagename"
-//        Glide.with(this.context).load(imagepath).into(holder.productImage)
+        val imagename = product.gallery
+        val imagepath = "https://bilibeadss-bilibeadss-com.preview-domain.com/products/$imagename"
+        Glide.with(this.context).load(imagepath).into(holder.productImage)
 
         holder.productName.text = product.title
         holder.productPrice.text = product.price
