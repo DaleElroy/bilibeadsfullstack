@@ -5,16 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
-    android:padding="10dp"
     tools:context=".AddToCart.CartActivity">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/back_button" />
 
     <TextView
         android:id="@+id/titleSP"
         style="@style/Buttons"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/bt_customize_shape"
+        android:background="@drawable/bt_customize_shape_noround"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="Shopping Cart"
@@ -33,45 +37,34 @@
 
     <LinearLayout
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/addToCartButton"
+        <TextView
+            android:id="@+id/total"
             style="@style/Buttons"
-            android:layout_width="180dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/customizebutton"
+            android:background="@drawable/bt_customize_shape_noround"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Add to Cart">
-
-
-        </androidx.appcompat.widget.AppCompatButton>
+            android:text="@string/total"
+            android:textSize="20sp"
+            android:gravity="center_vertical" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buyNowButton"
-            android:layout_width="180dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_toRightOf="@+id/clear_button"
             style="@style/Buttons"
-            android:background="@drawable/customizebutton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/bt_customize_shape_noround"
             android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="Buy Now">
-
-
-        </androidx.appcompat.widget.AppCompatButton>
-
+            android:text="CHECK OUT"
+            android:textSize="15sp" />
     </LinearLayout>
-
 
 
 
