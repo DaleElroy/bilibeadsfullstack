@@ -94,18 +94,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Username:"
+            android:text="Name        :"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginLeft="5dp"/>
 
         <TextView
-            android:id="@+id/tvUser"
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:text="@string/user"
+            android:hint="name"
             android:textColor="@android:color/tab_indicator_text"
             android:textSize="18dp" />
     </LinearLayout>
@@ -138,7 +138,7 @@
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email"
+            android:hint="Email"
             android:layout_marginStart="25dp"
             android:textSize="18dp"
             android:textColor="@android:color/tab_indicator_text"/>
