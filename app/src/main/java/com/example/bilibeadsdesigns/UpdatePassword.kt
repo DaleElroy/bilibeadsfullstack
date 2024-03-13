@@ -37,7 +37,7 @@ class UpdatePassword : AppCompatActivity() {
         currentPasswordEditText = findViewById(R.id.current_password)
         newPasswordEditText = findViewById(R.id.new_password)
         confirmPasswordEditText = findViewById(R.id.confirm_password)
-        saveButton = findViewById(R.id.bt_registration)
+        saveButton = findViewById(R.id.bt_update)
 
         // Set click listener for the Save button
         saveButton.setOnClickListener {
@@ -52,7 +52,7 @@ class UpdatePassword : AppCompatActivity() {
 
         // Perform input validation here if needed
 
-        val apiService = RetrofitClient.getService(this)
+        val apiService = RetrofitClient.getService()
 
         val changePasswordRequest = ChangePasswordRequest(
             currentPassword = currentPassword,

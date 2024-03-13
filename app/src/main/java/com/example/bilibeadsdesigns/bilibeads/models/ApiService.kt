@@ -10,23 +10,23 @@ interface ApiService {
     @GET("user")
     fun getUserData(): Call<List<User>>
 
-    @POST("register")
-    fun register(@Body user: User):Call<User>
-
-//    @POST("login")
+    //    @POST("login")
 //    fun login(@Body credentials: User): Call<User>
 
     @GET("user/{id}")
     fun getUserDetails(@Path("id") id: String): Call<User>
+
+    @POST("register")
+    fun register(@Body user: User):Call<User>
+
+    @GET("user_details")
+    fun getUserProfile(): Call<UserProfile>
 
     @POST("reset-password")
     fun resetPassword(@Body resetPasswordRequest: ResetPasswordRequest): Call<ResetPasswordResponse>
 
     @GET("product")
     fun getProductList(): Call<List<ProductItem>> ///ito yon sa product
-
-    @GET("user_details")
-    fun getUserProfile(): Call<UserProfile>
 
     @POST("change-password")
     fun changePassword(@Body changePasswordRequest: ChangePasswordRequest): Call<ChangePasswordResponse>

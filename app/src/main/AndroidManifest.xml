@@ -58,7 +58,7 @@
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".RegistrationActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SplashScreen.SplashScreen"
             android:exported="true">

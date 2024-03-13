@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <!-- Pressed state, if needed -->
+        <layer-list>
+            <item android:drawable="@android:color/transparent" />
+            <item
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp"
+                android:bottom="2dp">
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:width="2dp"
+                        android:color="#000000" /> <!-- Set the border color and thickness -->
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item>
+        <!-- Default state -->
+        <layer-list>
+            <item android:drawable="@android:color/transparent" />
+            <item
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp"
+                android:bottom="2dp">
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:width="2dp"
+                        android:color="#000000" /> <!-- Set the border color and thickness -->
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>

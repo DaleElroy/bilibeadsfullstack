@@ -3,7 +3,9 @@ package com.example.bilibeadsdesigns.Profile
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,22 +19,51 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var logoutButton: Button
     private lateinit var editProfile: Button
     private lateinit var changePass: Button
+    private lateinit var genderSpinner: Spinner
+
+    private lateinit var tvYourName: TextView
+    private lateinit var tvYourEmail: TextView
+    private lateinit var tvYourAddress: TextView
+    private lateinit var tvYourAge: TextView
+    private lateinit var tvYourPhone: TextView
+    private lateinit var tvYourGender: TextView // Changed from Spinner to TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_profile)
 
+        tvYourName = findViewById(R.id.tvName)
+        tvYourEmail = findViewById(R.id.tvEmail)
+        tvYourAddress = findViewById(R.id.tvAddress)
+        tvYourAge = findViewById(R.id.tvAge)
+        tvYourPhone = findViewById(R.id.tvNumber)
+//        tvYourGender = findViewById(R.id.spinnerGender) // Initialize TextView for gender
+
         // Assuming you have already retrieved the user data from SharedPreferences
         val userData = getUserData()
 
-        val tvYourName: TextView = findViewById(R.id.tvName)
-        val tvYourEmail: TextView = findViewById(R.id.tvEmail)
-        val tvYourAddress: TextView = findViewById(R.id.tvAddress)
+        // Add the following lines to initialize the spinner
+        genderSpinner = findViewById(R.id.spinnerGender)
+        val genderAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.gender_options,
+            android.R.layout.simple_spinner_item
+        )
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        genderSpinner.adapter = genderAdapter
+        // End of spinner initialization
 
         userData?.let { user ->
-            tvYourName.text = user.name
-            tvYourEmail.text = user.email
-            tvYourAddress.text = user.address
+            tvYourName.text = "Name: ${user.name}"
+            tvYourEmail.text = "Email: ${user.email}"
+            tvYourAddress.text = "Address: ${user.address}"
+            tvYourAge.text = "Age: ${user.age}"
+            tvYourPhone.text = "Phone: ${user.phone}"
+            tvYourGender.text = "Gender: ${user.gender}" // Set text for gender TextView
+
+            // Set the selected gender in the spinner based on user data
+            val genderPosition = genderAdapter.getPosition(user.gender)
+            genderSpinner.setSelection(genderPosition)
         }
 
         logoutButton = findViewById(R.id.bt_logout)
@@ -53,6 +84,11 @@ class ProfilePage : AppCompatActivity() {
         }
 
         editProfile.setOnClickListener {
+            // Get the selected gender from the spinner
+            val selectedGender = genderSpinner.selectedItem.toString()
+
+            // Add logic to handle the selected gender (optional)
+
             Toast.makeText(this, "Successfully Change", Toast.LENGTH_SHORT).show()
             // Add logic to navigate to the edit profile page
         }
@@ -64,7 +100,7 @@ class ProfilePage : AppCompatActivity() {
         }
     }
 
-
+    // Replace UserProfile with your actual user profile model class
     private fun getUserData(): UserProfile? {
         val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
@@ -73,14 +109,23 @@ class ProfilePage : AppCompatActivity() {
         val email = sharedPreferences.getString("email", null)
         val address = sharedPreferences.getString("address", null)
         val password = sharedPreferences.getString("password", null)
+        val age = sharedPreferences.getString("age", null)
+        val phone = sharedPreferences.getString("phone", null)
+        val gender = sharedPreferences.getString("gender", null)
 
-        return if (id != null && name != null && email != null && address != null && password != null) {
-            UserProfile(id = id, name = name, email = email, address = address, password = password)
+        return if (id != null && name != null && email != null && address != null && password != null &&
+            age != null && phone != null && gender != null
+        ) {
+            UserProfile(id = id, name = name, email = email, address = address, password = password, age = age, phone = phone, gender = gender)
         } else {
             null
         }
     }
 }
+
+
+
+
 
 
 

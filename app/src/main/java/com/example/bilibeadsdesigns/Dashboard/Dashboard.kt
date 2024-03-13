@@ -57,7 +57,7 @@ class Dashboard : AppCompatActivity() {
     }
 
     private fun fetchProductList() {
-        val apiService = RetrofitClient.getService(this)
+        val apiService = RetrofitClient.getService()
         val call = apiService.getProductList()
 
         call.enqueue(object : Callback<List<ProductItem>> {

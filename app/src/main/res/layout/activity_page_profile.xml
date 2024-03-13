@@ -7,6 +7,36 @@
     android:padding="10dp"
     tools:context=".Profile.ProfilePage">
 
+    <LinearLayout
+        android:id="@+id/tvgender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvage"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Gender      :"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:textColor="@android:color/tab_indicator_text"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="75dp"
@@ -87,14 +117,14 @@
         android:layout_below="@id/profile_picture"
         android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_person"/>
+<!--        <ImageView-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/ic_person"/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name        :"
+            android:text="Name           :"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -105,9 +135,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:hint="name"
+            android:hint="Name"
             android:textColor="@android:color/tab_indicator_text"
             android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tvnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:layout_below="@id/username"
+        android:gravity="center_vertical">
+
+<!--        <ImageView-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/phone"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone No   :"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:layout_marginStart="25dp"
+            android:textSize="18dp"
+            android:textColor="@android:color/tab_indicator_text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -118,17 +182,17 @@
         android:paddingRight="15dp"
         android:paddingLeft="15dp"
         android:paddingTop="20dp"
-        android:layout_below="@id/username"
+        android:layout_below="@id/tvnumber"
         android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_email"/>
+<!--        <ImageView-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/ic_email"/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email        :"
+            android:text="Email          :"
             android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@color/black"
@@ -156,16 +220,16 @@
         android:layout_below="@id/tvemail"
         android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_place"/>
+<!--        <ImageView-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/ic_place"/>-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="Address  :"
+            android:text="Address    :"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -176,6 +240,41 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:hint="@string/_123_pangasinan"
+            android:textColor="@android:color/tab_indicator_text"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tvage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:layout_below="@id/tvaddress"
+        android:gravity="center_vertical">
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="30dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:src="@drawable/ic_place"/>-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Age            :"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:hint="Age"
             android:textColor="@android:color/tab_indicator_text"
             android:textSize="18dp" />
     </LinearLayout>
