@@ -115,7 +115,7 @@ class DashboardAdapter(
         // Load image using Glide
         val imagename = product.gallery
         val imagepath =
-            "https://bilibeadss-bilibeadss-com.preview-domain.com/products/$imagename"
+            "https://bilibead-bilibead-com.preview-domain.com/public/storage/products/$imagename"
         Glide.with(context).load(imagepath).into(holder.productImage)
 
         holder.productName.text = product.title

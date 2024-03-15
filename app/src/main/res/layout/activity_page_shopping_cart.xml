@@ -45,14 +45,14 @@
             android:id="@+id/total"
             style="@style/Buttons"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="60dp"
             android:background="@drawable/bt_customize_shape_noround"
+            android:gravity="center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/total"
-            android:textSize="20sp"
-            android:gravity="center_vertical" />
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buyNowButton"

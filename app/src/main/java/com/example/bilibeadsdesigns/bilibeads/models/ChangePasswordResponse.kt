@@ -1,5 +1,9 @@
 package com.example.bilibeadsdesigns.bilibeads.models
 
+import com.google.gson.annotations.SerializedName
+
 data class ChangePasswordResponse(
-    val message: String // You can customize this based on your API response
+    @SerializedName("message") val message: String,
+    @SerializedName("status") val status: String
 )
+

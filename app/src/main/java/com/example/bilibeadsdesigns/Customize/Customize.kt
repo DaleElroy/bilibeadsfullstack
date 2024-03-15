@@ -29,21 +29,21 @@ class Customize : AppCompatActivity() {
         backButton.setOnClickListener{
             val intent = Intent (this, Dashboard::class.java)
             startActivity(intent)
-            finish()
+
         }
 
         val shoppingCart = findViewById<ImageView>(R.id.iv_cart)
         shoppingCart.setOnClickListener {
             val intent = Intent(this,CartActivity::class.java)
             startActivity(intent)
-            finish()
+
         }
 
         val profile = findViewById<ImageView>(R.id.iv_profile)
         profile.setOnClickListener {
             val intent = Intent(this, ProfilePage::class.java)
             startActivity(intent)
-            finish()
+
         }
 
         val recyclerView = findViewById<RecyclerView>(R.id.rv_productList)

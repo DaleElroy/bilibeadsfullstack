@@ -1,8 +1,10 @@
 package com.example.bilibeadsdesigns
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
@@ -11,9 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bilibeadsdesigns.Dashboard.Dashboard
 import com.example.bilibeadsdesigns.bilibeads.models.LoginResponse
+import com.example.bilibeadsdesigns.bilibeads.models.LoginUser
 import com.example.bilibeadsdesigns.bilibeads.models.RetrofitClient
-import com.example.bilibeadsdesigns.bilibeads.models.User
-import com.example.bilibeadsdesigns.bilibeads.models.UserProfile
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -79,50 +80,100 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun loginUser(email: String, password: String) {
-        val apiService = RetrofitClient.getService()
-
-        val user = User(name = "", email = email, password = password)
-
-        val call = apiService.login(user)
-
-        call.enqueue(object : Callback<UserProfile> {
-            override fun onResponse(call: Call<UserProfile>, response: Response<UserProfile>) {
+        val call = RetrofitClient.getService().login(LoginUser(email, password))
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
-                    val loggedInUserProfile = response.body()
-                    saveUserData(loggedInUserProfile)
+                    val loginResponse = response.body()
+                    if (loginResponse != null) {
+                        val token = loginResponse.token
+                        val userId = loginResponse.userId
 
-                    Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT)
-                        .show()
-                    val intent = Intent(this@LoginActivity, Dashboard::class.java)
-                    startActivity(intent)
+                        // Save token and user ID
+                        saveToken(token)
+                        saveUserId(userId)
+
+                        // Navigate to the dashboard or another activity
+                        val intent = Intent(this@LoginActivity, Dashboard::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(applicationContext, "Login response is null", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Login failed. Please try again.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    // Handle unsuccessful login (e.g., invalid credentials)
+                    Toast.makeText(applicationContext, "Login failed", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<UserProfile>, t: Throwable) {
-                Toast.makeText(
-                    applicationContext,
-                    "Network error. Please try again.",
-                    Toast.LENGTH_SHORT
-                ).show()
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                // Handle network failures or server errors
+                Toast.makeText(applicationContext, "Failed to communicate with the server", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    private fun handleSuccessfulLogin(login: LoginResponse){
-        RetrofitClient.saveToken(this@LoginActivity, login.token)
-        saveUserData(login.user)
-        val intent = Intent(this@LoginActivity, Dashboard::class.java)
-        startActivity(intent)
-        finish()
+
+    private fun saveToken(token: String) {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("token", token)
+        Log.d("SharedPreferences", "User token saved: token=$token")
+        editor.apply()
     }
+
+    private fun saveUserId(userId: String) {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("userId", userId)
+        Log.d("SharedPreferences", "User Id saved: userId=$userId")
+        editor.apply()
+    }
+
+
+//    private fun loginUser(email: String, password: String) {
+//        val apiService = RetrofitClient.getService()
+//
+//        val user = User(name = "", email = email, password = password)
+//
+//        val call = apiService.login(user)
+//
+//        call.enqueue(object : Callback<UserProfile> {
+//            override fun onResponse(call: Call<UserProfile>, response: Response<UserProfile>) {
+//                if (response.isSuccessful) {
+//                    val loggedInUserProfile = response.body()
+//                    saveUserData(loggedInUserProfile)
+//
+//                    Toast.makeText(applicationContext, "Login successful", Toast.LENGTH_SHORT)
+//                        .show()
+//                    val intent = Intent(this@LoginActivity, Dashboard::class.java)
+//                    startActivity(intent)
+//                } else {
+//                    Toast.makeText(
+//                        applicationContext,
+//                        "Login failed. Please try again.",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<UserProfile>, t: Throwable) {
+//                Toast.makeText(
+//                    applicationContext,
+//                    "Network error. Please try again.",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        })
+//    }
+
+//    private fun handleSuccessfulLogin(login: LoginResponse){
+//        RetrofitClient.saveToken(this@LoginActivity, login.token)
+//        saveUserData(login.user)
+//        val intent = Intent(this@LoginActivity, Dashboard::class.java)
+//        startActivity(intent)
+//        finish()
+//    }
 
 //    private fun saveUserData(userProfile: UserProfile?) {
 //        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
@@ -135,21 +186,21 @@ class LoginActivity : AppCompatActivity() {
 //    }
 //}
 
-    private fun saveUserData(userProfile: UserProfile?) {
-        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-
-        editor.putString("id", userProfile?.id)
-        editor.putString("name", userProfile?.name)
-        editor.putString("email", userProfile?.email)
-        editor.putString("address", userProfile?.address)
-        editor.putString("password", userProfile?.password)
-        editor.putString("age", userProfile?.age)
-        editor.putString("phone", userProfile?.phone)
-        editor.putString("gender", userProfile?.gender)
-
-        editor.apply()
-    }
+//    private fun saveUserData(userProfile: UserProfile?) {
+//        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+//        val editor = sharedPreferences.edit()
+//
+//        editor.putString("id", userProfile?.id)
+//        editor.putString("name", userProfile?.name)
+//        editor.putString("email", userProfile?.email)
+//        editor.putString("address", userProfile?.address)
+//        editor.putString("password", userProfile?.password)
+//        editor.putString("age", userProfile?.age)
+//        editor.putString("phone", userProfile?.phone)
+//        editor.putString("gender", userProfile?.gender)
+//
+//        editor.apply()
+//    }
 
     private fun isEmailValid(email: String): Boolean {
         return email.length >= 8

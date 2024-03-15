@@ -20,20 +20,21 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:src="@drawable/design11" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:gravity="center"
-            android:id="@+id/addtocartButton"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bt_customize_shape"
-            android:layout_marginStart="30dp"
-            style="@style/Buttons"
-            android:text="Add To Cart"
-            android:textAlignment="center"
-            android:textAllCaps="true">
 
-        </androidx.appcompat.widget.AppCompatButton>
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/addtocartButton"-->
+<!--            style="@style/Buttons"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="14dp"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:background="@drawable/bt_customize_shape"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Add To Cart"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textAllCaps="true">-->
+
+<!--        </androidx.appcompat.widget.AppCompatButton>-->
 
         <TextView
             android:id="@+id/tv_title"
@@ -69,7 +70,18 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="3dp"
                 style="@style/text"
-                android:text="Stussy Inspired Bracelet"
+                android:text="Price"
+                android:textAlignment="center"
+                android:textSize="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_pesos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                style="@style/text"
+                android:text=" Pesos"
                 android:textAlignment="center"
                 android:textSize="10dp"/>
         </LinearLayout>

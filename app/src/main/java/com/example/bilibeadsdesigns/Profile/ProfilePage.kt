@@ -1,14 +1,18 @@
 package com.example.bilibeadsdesigns.Profile
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bilibeadsdesigns.AddToCart.CartActivity
+import com.example.bilibeadsdesigns.Dashboard.Dashboard
 import com.example.bilibeadsdesigns.LoginActivity
 import com.example.bilibeadsdesigns.R
 import com.example.bilibeadsdesigns.UpdatePassword
@@ -28,9 +32,26 @@ class ProfilePage : AppCompatActivity() {
     private lateinit var tvYourPhone: TextView
     private lateinit var tvYourGender: TextView // Changed from Spinner to TextView
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_profile)
+
+        val btnViewLogo: ImageView = findViewById(R.id.iv_logo)
+        val btnViewCart: ImageView = findViewById(R.id.iv_cart)
+
+        btnViewLogo.setOnClickListener {
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
+
+        }
+
+        btnViewCart.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+
+        }
+
 
         tvYourName = findViewById(R.id.tvName)
         tvYourEmail = findViewById(R.id.tvEmail)
@@ -67,7 +88,7 @@ class ProfilePage : AppCompatActivity() {
         }
 
         logoutButton = findViewById(R.id.bt_logout)
-        editProfile = findViewById(R.id.edit_profile)
+//        editProfile = findViewById(R.id.edit_profile)
         changePass = findViewById(R.id.change_pass)
 
         // Insert the code below
@@ -83,15 +104,15 @@ class ProfilePage : AppCompatActivity() {
             Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show()
         }
 
-        editProfile.setOnClickListener {
-            // Get the selected gender from the spinner
-            val selectedGender = genderSpinner.selectedItem.toString()
-
-            // Add logic to handle the selected gender (optional)
-
-            Toast.makeText(this, "Successfully Change", Toast.LENGTH_SHORT).show()
-            // Add logic to navigate to the edit profile page
-        }
+//        editProfile.setOnClickListener {
+//            // Get the selected gender from the spinner
+//            val selectedGender = genderSpinner.selectedItem.toString()
+//
+//            // Add logic to handle the selected gender (optional)
+//
+//            Toast.makeText(this, "Successfully Change", Toast.LENGTH_SHORT).show()
+//            // Add logic to navigate to the edit profile page
+//        }
 
         changePass.setOnClickListener {
             // Add logic to navigate to the UpdatePassword activity

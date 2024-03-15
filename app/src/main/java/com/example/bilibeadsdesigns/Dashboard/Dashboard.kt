@@ -41,15 +41,20 @@ class Dashboard : AppCompatActivity() {
         customizeButton.setOnClickListener {
             val intent = Intent(this, Customize::class.java)
             startActivity(intent)
+            finish()
+
         }
         profileButton.setOnClickListener {
             val intent = Intent(this, ProfilePage::class.java)
             startActivity(intent)
             finish()
+
         }
         cartButton.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
+
+
         }
 
         // Fetch product data using Retrofit

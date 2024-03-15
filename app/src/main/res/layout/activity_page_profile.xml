@@ -280,17 +280,17 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/edit_profile"
-        style="@style/Buttons"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:text="Edit Profile"
-        android:textAlignment="center"
-        android:textAllCaps="true" />
+<!--    <Button-->
+<!--        android:id="@+id/edit_profile"-->
+<!--        style="@style/Buttons"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginBottom="100dp"-->
+<!--        android:text="Edit Profile"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textAllCaps="true" />-->
 
     <Button
         android:id="@+id/change_pass"

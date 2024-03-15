@@ -1,6 +1,7 @@
 package com.example.bilibeadsdesigns.Dashboard
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.bilibeadsdesigns.AddToCart.CartActivity
+import com.example.bilibeadsdesigns.Profile.ProfilePage
 import com.example.bilibeadsdesigns.R
 
 class ViewProduct : AppCompatActivity() {
@@ -32,6 +35,29 @@ class ViewProduct : AppCompatActivity() {
         val textViewTitle: TextView = findViewById(R.id.tv_viewtitle)
         val textViewPrice: TextView = findViewById(R.id.tv_viewprice)
         val btnAddToCart: Button = findViewById(R.id.btnAddToCart)
+
+        val btnViewLogo: ImageView = findViewById(R.id.iv_viewlogo)
+        val btnViewCart: ImageView = findViewById(R.id.iv_viewcart)
+        val btnViewProfile: ImageView = findViewById(R.id.iv_viewprofile)
+
+        btnViewLogo.setOnClickListener {
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
+
+        }
+
+        btnViewCart.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        btnViewProfile.setOnClickListener {
+            val intent = Intent(this, ProfilePage::class.java)
+            startActivity(intent)
+
+        }
+
 
         Log.d("ViewProduct", "Product Image: $productImage")
 
@@ -66,7 +92,21 @@ class ViewProduct : AppCompatActivity() {
         textViewPrice.text = productPrice
 
         btnAddToCart.setOnClickListener {
-            // Implement your Add to Cart logic here
+//            val newItem = ProductCart(0, productTitle ?: "", parsePrice(productPrice), productImage ?: "")
+//            Cart.addToCart(newItem)
+
+            val intent = Intent(this, CartActivity::class.java).apply {
+                putExtra("product_image", productImage)
+                putExtra("product_title", productTitle)
+                putExtra("product_price", productPrice)
+            }
+            startActivity(intent)
         }
+
+    }
+
+    // Helper function to parse the price string and convert it to Double
+    private fun parsePrice(price: String?): Double {
+        return price?.replace("[^0-9.]".toRegex(), "")?.toDoubleOrNull() ?: 0.0
     }
 }
