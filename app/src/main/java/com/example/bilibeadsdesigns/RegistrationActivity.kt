@@ -250,7 +250,9 @@ package com.example.bilibeadsdesigns
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -270,6 +272,10 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var et_confirmPassword: EditText
     private lateinit var tv_button_SignIn: AppCompatButton
     private lateinit var tv_button_Login: TextView
+    private lateinit var passwordVisibilityToggle: ImageView
+    private lateinit var confirmPasswordVisibilityToggle: ImageView
+    private var isPasswordVisible = false
+    private var isConfirmPasswordVisible = false
 
     private val apiService = RetrofitClient.getService()
 
@@ -277,20 +283,33 @@ class RegistrationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_page_registration)
 
+        // Initialize views
         et_name = findViewById(R.id.register_username)
         et_emailAddress = findViewById(R.id.register_email)
         et_password = findViewById(R.id.register_password)
         et_confirmPassword = findViewById(R.id.register_confirm_password)
         tv_button_SignIn = findViewById(R.id.bt_registration)
         tv_button_Login = findViewById(R.id.tv_button_SignIn)
+        passwordVisibilityToggle = findViewById(R.id.password_visibility_toggle)
+        confirmPasswordVisibilityToggle = findViewById(R.id.confirm_password_visibility_toggle)
 
-        tv_button_Login.setOnClickListener{
+        tv_button_Login.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
         tv_button_SignIn.setOnClickListener {
             registerUser()
+        }
+
+        // Set click listener for password visibility toggle
+        passwordVisibilityToggle.setOnClickListener {
+            togglePasswordVisibility(et_password, passwordVisibilityToggle)
+        }
+
+        // Set click listener for confirm password visibility toggle
+        confirmPasswordVisibilityToggle.setOnClickListener {
+            togglePasswordVisibility(et_confirmPassword, confirmPasswordVisibilityToggle)
         }
     }
 
@@ -390,7 +409,23 @@ class RegistrationActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this@RegistrationActivity, message, Toast.LENGTH_SHORT).show()
     }
+
+    private fun togglePasswordVisibility(passwordEditText: EditText, toggleImageView: ImageView) {
+        if (passwordEditText.transformationMethod == null) {
+            // Password is visible, hide it
+            passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+            passwordEditText.setSelection(passwordEditText.text.length)
+            toggleImageView.setImageResource(R.drawable.hide) // Change to your appropriate drawable
+        } else {
+            // Password is hidden, show it
+            passwordEditText.transformationMethod = null
+            passwordEditText.setSelection(passwordEditText.text.length)
+            toggleImageView.setImageResource(R.drawable.show)
+        }
+    }
 }
+
+
 
 
 

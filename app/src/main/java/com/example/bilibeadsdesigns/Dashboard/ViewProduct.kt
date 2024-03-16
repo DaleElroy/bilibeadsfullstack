@@ -92,9 +92,6 @@ class ViewProduct : AppCompatActivity() {
         textViewPrice.text = productPrice
 
         btnAddToCart.setOnClickListener {
-//            val newItem = ProductCart(0, productTitle ?: "", parsePrice(productPrice), productImage ?: "")
-//            Cart.addToCart(newItem)
-
             val intent = Intent(this, CartActivity::class.java).apply {
                 putExtra("product_image", productImage)
                 putExtra("product_title", productTitle)

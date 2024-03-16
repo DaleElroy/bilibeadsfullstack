@@ -50,24 +50,24 @@
 //
 //
 //}
-
-package com.example.bilibeadsdesigns.AddToCart
-
-import com.example.bilibeadsdesigns.bilibeads.models.ProductCart
-
-object Cart {
-    private val cartItems: MutableList<ProductCart> = mutableListOf()
-
-    fun addToCart(item: ProductCart) {
-        cartItems.add(item)
-    }
-
-    fun getCartItems(): List<ProductCart> {
-        return cartItems
-    }
-
-    fun deleteCartItem(item: ProductCart) {
-        cartItems.remove(item)
-    }
-}
+//
+//package com.example.bilibeadsdesigns.AddToCart
+//
+//import com.example.bilibeadsdesigns.bilibeads.models.ProductCart
+//
+//object Cart {
+//    private val cartItems: MutableList<ProductCart> = mutableListOf()
+//
+//    fun addToCart(item: ProductCart) {
+//        cartItems.add(item)
+//    }
+//
+//    fun getCartItems(): List<ProductCart> {
+//        return cartItems
+//    }
+//
+//    fun deleteCartItem(item: ProductCart) {
+//        cartItems.remove(item)
+//    }
+//}
 

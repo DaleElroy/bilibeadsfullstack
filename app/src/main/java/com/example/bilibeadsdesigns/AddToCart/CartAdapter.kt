@@ -96,7 +96,7 @@ class CartAdapter(private val context: Context, private var cartItems: MutableLi
 
         val imagename = product.product_photo
         val imagepath =
-            "https://bilibead-bilibead-com.preview-domain.com/public/storage/addtocart/$imagename"
+            "https://bilibead-bilibead-com.preview-domain.com/public/storage/products/$imagename"
         Glide.with(context).load(imagepath).into(holder.itemImage)
 
         holder.itemTitle.text = product.product_title

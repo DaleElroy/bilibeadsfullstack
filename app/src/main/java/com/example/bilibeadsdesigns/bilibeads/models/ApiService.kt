@@ -32,21 +32,11 @@ interface ApiService {
     fun getProductList(): Call<List<ProductItem>> ///ito yon sa product
 
 
-//    @POST("login")
-//    fun login(@Body user: User): Call<LoginResponse>
-
     @POST("login")
     fun login(@Body loginUser: LoginUser): Call<LoginResponse>
 
     @GET("addtocart")
-    fun getCartItems(): Call<List<ProductCart>>
-
-//    @POST("/changepassword")
-//    fun changePassword(@Header("Authorization") token: String): Call<ChangePasswordResponse>
-
-//    @POST("/changepassword")
-//    @FormUrlEncoded
-//    fun changePassword(@Field("password") password: String): Call<ChangePasswordResponse>
+    fun getCartItems(@Header("Authorization") token: String): Call<CartResponse>
 
     @POST("changepass")
     @FormUrlEncoded
